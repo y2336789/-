@@ -15,8 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
     EditText editText;
@@ -31,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listItem = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,listItem);
+        listView = findViewById(R.id.result);
+        listView.setAdapter(adapter);
 
         editText = findViewById(R.id.editText);
 
@@ -38,11 +44,28 @@ public class MainActivity extends AppCompatActivity {
 
         Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
 
-        komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
+//        FileOutputStream fos;
+//
+//        String strFileContents = "핼로우";
+//
+//        try {
+//            fos = openFileOutput("dic2.user", MODE_PRIVATE);
+//            fos.write(strFileContents.getBytes());
+//            fos.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        komoran.setUserDic("/data/data/com.dowon.wdd/files/dic2.user");
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                listItem.clear();
+                adapter.notifyDataSetChanged();
+
                 String strToAnalyze = editText.getText().toString();
                 KomoranResult analyzeResultList = komoran.analyze(strToAnalyze);
 
@@ -55,9 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,listItem);
-        listView = findViewById(R.id.result);
-        listView.setAdapter(adapter);
+
 
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
