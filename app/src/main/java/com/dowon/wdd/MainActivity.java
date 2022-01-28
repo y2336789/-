@@ -35,10 +35,14 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editText);
 
         Button button = findViewById(R.id.input_btn);
+
+        Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
+
+        komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Komoran komoran = new Komoran(DEFAULT_MODEL.FULL);
                 String strToAnalyze = editText.getText().toString();
                 KomoranResult analyzeResultList = komoran.analyze(strToAnalyze);
 
