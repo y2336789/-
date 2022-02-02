@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "866327931678",
+    "project_id": "newword-dictionary",
+    "storage_bucket": "newword-dictionary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866327931678:android:f76c56bcc558cdef19770f",
+        "android_client_info": {
+          "package_name": "com.dowon.wdd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866327931678-dhcvqu8t2qf3efoc29j60knbuak2sjhb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dowon.wdd",
+            "certificate_hash": "cf6bf5d8056cca82b5654557df01af22f6912bb8"
+          }
+        },
+        {
+          "client_id": "866327931678-9fi0ogk56tncq6itq07uf22q4csf7o8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv98xyStmicPhETAGHfMs7aSMVS4w-nRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866327931678-9fi0ogk56tncq6itq07uf22q4csf7o8n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
