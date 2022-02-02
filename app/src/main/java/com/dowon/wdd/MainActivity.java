@@ -15,6 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,33 +32,60 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         listItem = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,listItem);
+        listView = findViewById(R.id.result);
+        listView.setAdapter(adapter);
 
         editText = findViewById(R.id.editText);
 
         Button button = findViewById(R.id.input_btn);
+
+        InputStream is = null;
+        FileOutputStream fos = null;
+
+        try {
+            is = getAssets().open("dic.user");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            File outfile = new File("/data/data/com.dowon.wdd/dic.user");
+            fos = new FileOutputStream(outfile, false);
+            for (int c = is.read(buffer); c != -1; c = is.read(buffer)){
+                fos.write(buffer, 0, c);
+            }
+            is.close();
+            fos.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+        Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
+        komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Komoran komoran = new Komoran(DEFAULT_MODEL.FULL);
+                listItem.clear();
+                adapter.notifyDataSetChanged();
+
                 String strToAnalyze = editText.getText().toString();
                 KomoranResult analyzeResultList = komoran.analyze(strToAnalyze);
 
                 List<String> NNPList = analyzeResultList.getMorphesByTags("NNP");
 
                 for (String string : NNPList) {
-//                    Log.d("check4", string);
+                    Log.d("check4", string);
                     listItem.add(string);
                     adapter.notifyDataSetChanged();
                 }
             }
         });
-        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,listItem);
-        listView = findViewById(R.id.result);
-        listView.setAdapter(adapter);
 
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
