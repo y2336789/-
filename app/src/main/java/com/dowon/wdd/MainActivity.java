@@ -1,5 +1,6 @@
 package com.dowon.wdd;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
@@ -14,6 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,14 +35,20 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ArrayList<String> listItem;
 
+
+    private FirebaseFirestore db;
+    private List<Word> words = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//         어뎁터 준비
         listItem = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,listItem);
+        // 뷰에 어뎁터 연결
         listView = findViewById(R.id.result);
         listView.setAdapter(adapter);
 
@@ -47,6 +58,28 @@ public class MainActivity extends AppCompatActivity {
 
         InputStream is = null;
         FileOutputStream fos = null;
+
+        db = FirebaseFirestore.getInstance();
+
+//        파이어베이스 연동하고 컬렉션에 문서 저장하기
+        Word word = new Word("gg","ㅋㅋ","테스트");
+        db.collection("word").document("3")
+                .set(word)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d("check3", "저장 성공");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("check3", "저장 실패");
+                    }
+                });
+
+        Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
+        komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
 
         try {
             is = getAssets().open("dic.user");
@@ -64,9 +97,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
-        komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,3 +125,35 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 }
+
+//        파이어베이스 연동하고 컬렉션에 문서 저장하기
+//        Word word = new Word("hi","무야호","몰라");
+//        db.collection("word").document("2")
+//                .set(word)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) {
+//                        Log.d("check3", "저장 성공");
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.d("check3", "저장 실패");
+//                    }
+//                });
+
+//        사용자 지정 사전 없이 실행할 수 있도록 하는 코드
+//        FileOutputStream fos;
+//
+//        String strFileContents = "핼로우";
+//
+//        try {
+//            fos = openFileOutput("dic2.user", MODE_PRIVATE);
+//            fos.write(strFileContents.getBytes());
+//            fos.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
