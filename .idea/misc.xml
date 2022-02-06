@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/word_result.xml" value="0.1" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/wdd/app/src/main/res/layout/activity_main.xml" value="0.20555555555555555" />
       </map>
     </option>

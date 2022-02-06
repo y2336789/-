@@ -1,12 +1,10 @@
 package com.dowon.wdd;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
 import kr.co.shineware.nlp.komoran.core.Komoran;
 import kr.co.shineware.nlp.komoran.model.KomoranResult;
-import kr.co.shineware.nlp.komoran.model.Token;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,11 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
+import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -62,24 +59,21 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
 //        파이어베이스 연동하고 컬렉션에 문서 저장하기
-        Word word = new Word("gg","ㅋㅋ","테스트");
-        db.collection("word").document("3")
-                .set(word)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Log.d("check3", "저장 성공");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("check3", "저장 실패");
-                    }
-                });
-
-        Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
-        komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
+//        Word word = new Word("test3","test","테스트2");
+//        db.collection("word").document("test")
+//                .set(word)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) {
+//                        Log.d("check3", "저장 성공");
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.d("check3", "저장 실패");
+//                    }
+//                });
 
         try {
             is = getAssets().open("dic.user");
@@ -96,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
+        komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -117,12 +114,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                  요 안에서 Intent로 단어를 DB로 넘겨서 해당 단어의 정보가 나오도록 코드 작성
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+//                Toast.makeText(MainActivity.this,   adapterView.getAdapter().getItem(position).toString(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), WordResult.class);
+
+                intent.putExtra("word", adapterView.getAdapter().getItem(position).toString());
+                startActivity(intent);
+            }
+        });
     }
 }
 

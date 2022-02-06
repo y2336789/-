@@ -14,11 +14,43 @@
       },
       "oauth_client": [
         {
+          "client_id": "866327931678-5clruu8bglfhtej626l8c40jpm2u9odk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dowon.wdd",
+            "certificate_hash": "83957a3a8a54a7be18ccae94ad3be3bcd8c226de"
+          }
+        },
+        {
           "client_id": "866327931678-dhcvqu8t2qf3efoc29j60knbuak2sjhb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.dowon.wdd",
             "certificate_hash": "cf6bf5d8056cca82b5654557df01af22f6912bb8"
+          }
+        },
+        {
+          "client_id": "866327931678-fdd7telvu7oemv4ln2k5588cbatbi1mb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dowon.wdd",
+            "certificate_hash": "c3f96b592b19beef54c1108c11dbe24bd7655dd4"
+          }
+        },
+        {
+          "client_id": "866327931678-hub2gjqc3e0c40dvg8f9ufijpbrgsjo2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dowon.wdd",
+            "certificate_hash": "4cf7224a4ef81eeee8b9807b87d8a72b287e1cb0"
+          }
+        },
+        {
+          "client_id": "866327931678-l7ig34hf963t00t4iru97lpl7bv3ofnb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dowon.wdd",
+            "certificate_hash": "697202c9ce17e258ebee9a437ba8ec2fb7c8e648"
           }
         },
         {
