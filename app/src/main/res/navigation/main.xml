@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.dowon.wdd.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_category"
+        android:name="com.dowon.wdd.CateFragment"
+        android:label="Category"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/nav_hashtag"
+        android:name="com.dowon.wdd.HashFragment"
+        android:label="Hashtag"
+        tools:layout="@layout/fragment_hashtag" />
+    <fragment
+        android:id="@+id/nav_extract_word"
+        android:name="com.dowon.wdd.ExtrFragment"
+        android:label="Extract"
+        tools:layout="@layout/fragment_extract_word" />
+    <fragment
+        android:id="@+id/nav_add_word"
+        android:name="com.dowon.wdd.AddFragment"
+        android:label="Add"
+        tools:layout="@layout/fragment_add_word" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.dowon.wdd.SetFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

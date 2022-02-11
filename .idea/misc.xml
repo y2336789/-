@@ -3,8 +3,40 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/word_result.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.223" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_addremote.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_baseline_category_24.xml" value="0.1155" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_baseline_dehaze_24.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_baseline_dehaze_48.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_baseline_search_48.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_category.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_explain.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_hashtag.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_home.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1465" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_menu.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_remote.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/drawable/ic_search.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/activity_bluetooth_device_lists.xml" value="0.35052083333333334" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/appbar.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/fragment_add_word.xml" value="0.14907407407407408" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/fragment_category.xml" value="0.14907407407407408" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/fragment_extract_word.xml" value="0.14907407407407408" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/fragment_hashtag.xml" value="0.14907407407407408" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/fragment_home.xml" value="0.14907407407407408" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/fragment_settings.xml" value="0.14907407407407408" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/header.xml" value="0.1767983789260385" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/layout_navigation_header.xml" value="0.15172239108409322" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/toolbar.xml" value="0.33" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/toolbar_main.xml" value="0.1" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/layout/word_result.xml" value="0.1767983789260385" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/menu/activity_toolbar.xml" value="0.20104166666666667" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/menu/drawerlayout.xml" value="0.26944444444444443" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/menu/menu_toolbar.xml" value="0.33" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/menu/navigation_menu.xml" value="0.25" />
+        <entry key="..\:/NewWord-Dictionary/app/src/main/res/menu/toolbar_menu.xml" value="0.20104166666666667" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/wdd/app/src/main/res/layout/activity_main.xml" value="0.20555555555555555" />
       </map>
     </option>

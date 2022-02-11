@@ -1,9 +1,5 @@
 package com.dowon.wdd;
 
-import androidx.appcompat.app.AppCompatActivity;
-import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
-import kr.co.shineware.nlp.komoran.core.Komoran;
-import kr.co.shineware.nlp.komoran.model.KomoranResult;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,17 +9,31 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
+import kr.co.shineware.nlp.komoran.core.Komoran;
+import kr.co.shineware.nlp.komoran.model.KomoranResult;
 
 public class MainActivity extends AppCompatActivity {
     EditText editText;
@@ -41,6 +51,20 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+
+        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // start에 지정된 Drawer 열기
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+        NavigationView navigationView = findViewById(R.id.navigationView);
+        navigationView.setItemIconTintList(null);
+
 
 //         어뎁터 준비
         listItem = new ArrayList<String>();
@@ -122,6 +146,18 @@ public class MainActivity extends AppCompatActivity {
 
                 intent.putExtra("word", adapterView.getAdapter().getItem(position).toString());
                 startActivity(intent);
+            }
+        });
+
+        NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
+        NavigationUI.setupWithNavController(navigationView, navController);
+
+        final TextView textTitle = findViewById(R.id.textTitle);
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                textTitle.setText(destination.getLabel());
             }
         });
     }
