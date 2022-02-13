@@ -21,8 +21,14 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileNotFoundException;
 
 import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
 import kr.co.shineware.nlp.komoran.core.Komoran;
@@ -64,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         });
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
-
 
 //         어뎁터 준비
         listItem = new ArrayList<String>();
@@ -132,8 +138,25 @@ public class MainActivity extends AppCompatActivity {
 
                 for (String string : NNPList) {
                     Log.d("check4", string);
-                    listItem.add(string);
-                    adapter.notifyDataSetChanged();
+
+                    DocumentReference exist = db.collection("word").document(string);
+
+                    exist.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    listItem.add(string);
+                                    adapter.notifyDataSetChanged();
+                                } else {
+                                    Log.d("test2", "Document does not exist!");
+                                }
+                            } else {
+                                Log.d("test2", "get failed with  ", task.getException());
+                            }
+                        }
+                    });
                 }
             }
         });
