@@ -18,7 +18,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class SetFragment extends Fragment {
+public class WordResultFragment extends Fragment { // 테스트 중 220216
 
     MainActivity activity;
 
@@ -26,12 +26,12 @@ public class SetFragment extends Fragment {
     String mean, eng_name;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public SetFragment() {
+    public WordResultFragment() {
         // Required empty public constructor
     }
 
-    public static SetFragment newInstance() {
-        return new SetFragment();
+    public static WordResultFragment newInstance() {
+        return new WordResultFragment();
     }
 
     @Override
@@ -59,6 +59,9 @@ public class SetFragment extends Fragment {
 
         String word = "어쩔티비";
         textView.setText(word);
+//        Intent intent = activity.getIntent();
+//        String word = intent.getExtras().getString("word");
+//        textView.setText(word);
 
 
         DocumentReference docRef = db.collection("word").document(word);
@@ -92,27 +95,3 @@ public class SetFragment extends Fragment {
         return rootView;
     }
 }
-
-
-//package com.dowon.wdd;
-//
-//import android.os.Bundle;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//
-//import androidx.fragment.app.Fragment;
-//
-//public class SetFragment extends Fragment {
-//
-//    public SetFragment() {
-//        // Required empty public constructor
-//    }
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_settings, container, false);
-//    }
-//}

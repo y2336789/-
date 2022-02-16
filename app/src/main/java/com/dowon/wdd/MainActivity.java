@@ -1,14 +1,7 @@
 package com.dowon.wdd;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,42 +9,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.FileNotFoundException;
-
-import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
-import kr.co.shineware.nlp.komoran.core.Komoran;
-import kr.co.shineware.nlp.komoran.model.KomoranResult;
 
 public class MainActivity extends AppCompatActivity {
-    EditText editText;
-    ListView listView;
 
-    ArrayAdapter<String> adapter;
-    ArrayList<String> listItem;
+    private FragmentManager fragmentManager;
 
-
-    private FirebaseFirestore db;
-    private List<Word> words = new ArrayList<>();
+    private Fragment fa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,106 +44,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
 
-//         어뎁터 준비
-        listItem = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,listItem);
-        // 뷰에 어뎁터 연결
-        listView = findViewById(R.id.result);
-        listView.setAdapter(adapter);
-
-        editText = findViewById(R.id.editText);
-
-        Button button = findViewById(R.id.input_btn);
-
-        InputStream is = null;
-        FileOutputStream fos = null;
-
-        db = FirebaseFirestore.getInstance();
-
-//        파이어베이스 연동하고 컬렉션에 문서 저장하기
-//        Word word = new Word("test3","test","테스트2");
-//        db.collection("word").document("test")
-//                .set(word)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        Log.d("check3", "저장 성공");
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.d("check3", "저장 실패");
-//                    }
-//                });
-
-        try {
-            is = getAssets().open("dic.user");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            File outfile = new File("/data/data/com.dowon.wdd/dic.user");
-            fos = new FileOutputStream(outfile, false);
-            for (int c = is.read(buffer); c != -1; c = is.read(buffer)){
-                fos.write(buffer, 0, c);
-            }
-            is.close();
-            fos.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
-        komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
-
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listItem.clear();
-                adapter.notifyDataSetChanged();
-
-                String strToAnalyze = editText.getText().toString();
-                KomoranResult analyzeResultList = komoran.analyze(strToAnalyze);
-
-                List<String> NNPList = analyzeResultList.getMorphesByTags("NNP");
-
-                for (String string : NNPList) {
-                    Log.d("check4", string);
-
-                    DocumentReference exist = db.collection("word").document(string);
-
-                    exist.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                if (document.exists()) {
-                                    listItem.add(string);
-                                    adapter.notifyDataSetChanged();
-                                } else {
-                                    Log.d("test2", "Document does not exist!");
-                                }
-                            } else {
-                                Log.d("test2", "get failed with  ", task.getException());
-                            }
-                        }
-                    });
-                }
-            }
-        });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                Toast.makeText(MainActivity.this,   adapterView.getAdapter().getItem(position).toString(),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), WordResult.class);
-
-                intent.putExtra("word", adapterView.getAdapter().getItem(position).toString());
-                startActivity(intent);
-            }
-        });
-
+        //네비
         NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
         NavigationUI.setupWithNavController(navigationView, navController);
 
@@ -183,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
                 textTitle.setText(destination.getLabel());
             }
         });
+    }
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.navHostFragment, fragment).commit();      // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
     }
 }
 
