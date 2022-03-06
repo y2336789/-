@@ -23,14 +23,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
 import kr.co.shineware.nlp.komoran.core.Komoran;
 import kr.co.shineware.nlp.komoran.model.KomoranResult;
 
@@ -44,6 +39,7 @@ public class ExtrFragment extends Fragment {
     ArrayAdapter<String> adapter;
     ArrayList<String> listItem;
 
+    Komoran komoran;
 
     private FirebaseFirestore db;
     private List<Word> words = new ArrayList<>();
@@ -57,6 +53,7 @@ public class ExtrFragment extends Fragment {
         super.onAttach(context);
 
         activity = (MainActivity) getActivity();
+        komoran = ((MainActivity)getActivity()).komoran;
     }
 
     @Override
@@ -83,9 +80,6 @@ public class ExtrFragment extends Fragment {
 
         Button button = rootView.findViewById(R.id.input_btn);
 
-        InputStream is = null;
-        FileOutputStream fos = null;
-
         db = FirebaseFirestore.getInstance();
 
 //        파이어베이스 연동하고 컬렉션에 문서 저장하기
@@ -105,25 +99,7 @@ public class ExtrFragment extends Fragment {
 //                    }
 //                });
 
-        try {
-            is = activity.getAssets().open("dic.user");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            File outfile = new File("/data/data/com.dowon.wdd/dic.user");
-            fos = new FileOutputStream(outfile, false);
-            for (int c = is.read(buffer); c != -1; c = is.read(buffer)) {
-                fos.write(buffer, 0, c);
-            }
-            is.close();
-            fos.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
         komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

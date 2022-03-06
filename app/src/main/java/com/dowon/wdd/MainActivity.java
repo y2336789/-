@@ -1,5 +1,6 @@
 package com.dowon.wdd;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -17,19 +18,30 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
+import kr.co.shineware.nlp.komoran.core.Komoran;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
     private FragmentManager fragmentManager;
 
     private Fragment fa;
 
+    public Komoran komoran;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        komoran = new Komoran(DEFAULT_MODEL.LIGHT);
+        komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
 
         final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
 
@@ -49,6 +61,26 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         final TextView textTitle = findViewById(R.id.textTitle);
+
+        InputStream is = null;
+        FileOutputStream fos = null;
+        
+        //dic.user파일을 핸드폰에 삽입시키기, 이미 dic.user가 존재할경우 새로운 내용으로 업데이트
+        try {
+            is = getAssets().open("dic.user");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            File outfile = new File("/data/data/com.dowon.wdd/dic.user");
+            fos = new FileOutputStream(outfile, false);
+            for (int c = is.read(buffer); c != -1; c = is.read(buffer)) {
+                fos.write(buffer, 0, c);
+            }
+            is.close();
+            fos.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
