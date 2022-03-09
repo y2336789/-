@@ -13,7 +13,8 @@ import androidx.fragment.app.Fragment;
 
 public class Initial_Fragment extends Fragment {
     // 리스트뷰에 아이템 추가할려면 LIST_MENU에 "추가할 내용" 해주면 됨
-    static final String[] LIST_MENU = {"LIST1", "LIST2", "LIST3"};
+    static final String[] LIST_MENU = {"ㄱ", "ㄴ", "ㄷ", "ㄹ","ㅁ", "ㅂ",
+    "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"};
     public Initial_Fragment() {
         // Required empty public constructor
     }
@@ -34,9 +35,9 @@ public class Initial_Fragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
-                String chosung = (String)parent.getAdapter().getItem(position);
+                String initial = (String)parent.getAdapter().getItem(position);
                 Intent intent = new Intent(getActivity(), InitialActivity.class);
-                intent.putExtra("chosung", chosung);
+                intent.putExtra("initial", initial);
                 startActivity(intent);
             }
         });

@@ -3,15 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="hi"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-<!--    <ListView-->
-<!--        android:id="@+id/chosung_result"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
 
-<!--    </ListView>-->
+    <ListView
+        android:id="@+id/initial_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
