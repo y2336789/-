@@ -49,7 +49,7 @@ public class ExtrFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context){
+    public void onAttach(Context context){ // 시작할때 자동으로 실행됨.
         super.onAttach(context);
 
         activity = (MainActivity) getActivity();

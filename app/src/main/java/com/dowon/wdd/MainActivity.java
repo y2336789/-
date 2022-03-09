@@ -42,24 +42,27 @@ public class MainActivity extends AppCompatActivity {
         komoran = new Komoran(DEFAULT_MODEL.LIGHT);
         komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
 
+        //평소에는 화면의 한쪽에 숨겨져 있다가 사용자가 액션을 취하면 화면에 나타날 수 있도록 하는 레이아웃 (activity_main.xml에서 설정됨)
         final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
 
+        //왼쪽위 메뉴 버튼을 클릭하면
         findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // start에 지정된 Drawer 열기
+                // start에 지정된 Drawer 열기 (activity_main.xml 의 NavigaitionView 부분에 start로 설정함.)
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+        //실제로 숨겨졌다가 나오는 뷰 그 자체를말한다.
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
 
-        //네비
+        //네비 컨트롤러를 가져오는 코드, 설정
         NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        final TextView textTitle = findViewById(R.id.textTitle);
+        final TextView textTitle = findViewById(R.id.textTitle); // 텍스트 타이틀 (신조어사전 부분)
 
         InputStream is = null;
         FileOutputStream fos = null;
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        //리스너 등록 후 탐색을 인식.
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //트랜잭션 실행, 플래그먼트매니저로 플레그먼트 트랜잭션을 만듬 -> replace 사용. (플래그먼트를 replace)
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

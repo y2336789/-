@@ -68,6 +68,9 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--
+    네비게이션 뷰 설정 start 되면 아래 헤더랑 메뉴 보여줌.
+    -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="wrap_content"
