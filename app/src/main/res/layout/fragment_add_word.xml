@@ -23,7 +23,7 @@
             app:layout_constraintVertical_bias="0.474" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/req_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

@@ -82,23 +82,6 @@ public class ExtrFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
 
-//        파이어베이스 연동하고 컬렉션에 문서 저장하기
-//        Word word = new Word("test3","test","테스트2");
-//        db.collection("word").document("test")
-//                .set(word)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        Log.d("check3", "저장 성공");
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.d("check3", "저장 실패");
-//                    }
-//                });
-
         komoran.setUserDic("/data/data/com.dowon.wdd/dic.user");
 
         button.setOnClickListener(new View.OnClickListener() {
