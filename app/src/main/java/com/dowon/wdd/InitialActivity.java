@@ -3,6 +3,8 @@ package com.dowon.wdd;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
@@ -49,14 +51,20 @@ public class InitialActivity extends AppCompatActivity {
                         WordList.add(document.getId());
                     }
                     adapter1.notifyDataSetChanged();
-                    //그렇지 않을때
                 } else {
 
                 }
             }
         });
-        Log.d("test2", WordList.toString());
 
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String word = (String)adapterView.getAdapter().getItem(position);
+                Intent intent = new Intent(getApplicationContext(), WordResult.class);
+                intent.putExtra("word", word);
+                startActivity(intent);
+            }
+        });
     }
 }

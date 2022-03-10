@@ -40,18 +40,27 @@
         <entry key="..\:/NewWord-Dictionary/app/src/main/res/menu/navigation_menu.xml" value="0.25" />
         <entry key="..\:/NewWord-Dictionary/app/src/main/res/menu/toolbar_menu.xml" value="0.20104166666666667" />
         <entry key="..\:/NewWord-Dictionary/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.145" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/drawable/ic_category.xml" value="0.1" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/drawable/ic_extract_word.xml" value="0.1" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/drawable/ic_hashtag.xml" value="0.1" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/drawable/ic_home.xml" value="0.1" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/drawable/ic_menu.xml" value="0.1" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/chosung.xml" value="0.1037037037037037" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/chosung_list.xml" value="0.23796296296296296" />
-        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/fragment_add_word.xml" value="0.1" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/fragment_add_word.xml" value="0.24778761061946902" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/fragment_category.xml" value="0.1" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/fragment_extract_word.xml" value="0.17603850050658562" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/fragment_hashtag.xml" value="0.22777777777777777" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/fragment_home.xml" value="0.22777777777777777" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/fragment_initial.xml" value="0.17603850050658562" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/fragment_settings.xml" value="0.22777777777777777" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/fragment_word_result.xml" value="0.22777777777777777" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/initial.xml" value="0.1" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/layout_navigation_header.xml" value="0.30885416666666665" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/listview_item.xml" value="0.1" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/word_request.xml" value="0.5" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/layout/word_result.xml" value="0.1037037037037037" />
+        <entry key="..\:/Users/y2336/AndroidStudioProjects/NewWord-Dictionary/app/src/main/res/menu/navigation_menu.xml" value="0.22870370370370371" />
         <entry key="..\:/Users/y2336/AndroidStudioProjects/wdd/app/src/main/res/layout/activity_main.xml" value="0.20555555555555555" />
       </map>
     </option>
